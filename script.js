@@ -1,47 +1,43 @@
-// Referencia al avatar
-const avatar = document.getElementById("avatar");
-
-// Lista de imágenes dentro de la carpeta "imagen"
+// Avatar
+const avatar = document.getElementById('avatar');
 const avatars = [
-    "imagen/AvatarMaker.png", // Asegúrate de que estas rutas sean correctas
-    "imagen/face.jpeg",
-    "imagen/can.jpeg"
+    'imagen/face.jpeg',
+    'imagen/AvatarMaker.png',
 ];
 
-let current = 0;
+let currentAvatar = 0;
 
-// Verificación para ver si las imágenes están siendo cargadas correctamente
-console.log("Imagenes cargadas: ", avatars);
-
-// Función para verificar si las imágenes están disponibles
-function checkImageAvailability(imagePath) {
-    const img = new Image();
-    img.onload = function() {
-        console.log(`${imagePath} cargada correctamente.`);
-    };
-    img.onerror = function() {
-        console.log(`Error al cargar la imagen: ${imagePath}`);
-    };
-    img.src = imagePath;
+// Función para cambiar el avatar con efecto fade
+function changeAvatar(index) {
+    avatar.style.opacity = 0;
+    setTimeout(() => {
+        avatar.src = avatars[index];
+        avatar.style.opacity = 1;
+    }, 500); // Duración del desvanecimiento
 }
 
-// Verificar si las imágenes existen
-avatars.forEach(checkImageAvailability);
-
-// Cambia el avatar cada 3 segundos
+// Cambio automático cada 5 segundos
 setInterval(() => {
-    current = (current + 1) % avatars.length;
-    
-    // Para un efecto suave:
-    avatar.style.opacity = 0; // Ocultamos el avatar antes de cambiar la imagen
-    setTimeout(() => {
-        console.log("Cambiando imagen a:", avatars[current]); // Verificamos la imagen que se va a mostrar
-        avatar.src = avatars[current]; // Cambia la fuente de la imagen
-        avatar.style.opacity = 1; // Vuelve a mostrar el avatar con la nueva imagen
-    }, 300);
-}, 3000);
+    currentAvatar = (currentAvatar + 1) % avatars.length;
+    changeAvatar(currentAvatar);
+}, 5000);
 
-// Muestra un mensaje al pasar el mouse sobre el <h1>
-document.querySelector('h1').addEventListener('mouseenter', () => {
-    alert('¡Hola, gracias por visitar mi perfil!');
+// Mostrar el primer avatar
+changeAvatar(currentAvatar);
+
+// Animar barras de progreso al cargar
+document.querySelectorAll('.progress').forEach(bar => {
+    const width = bar.getAttribute('data-width');
+    bar.style.width = '0';
+    setTimeout(() => {
+        bar.style.width = width;
+    }, 100);
+});
+
+// Verificar imágenes (opcional para depuración)
+avatars.forEach(src => {
+    const img = new Image();
+    img.onload = () => console.log(`${src} cargada correctamente`);
+    img.onerror = () => console.error(`Error al cargar ${src}`);
+    img.src = src;
 });

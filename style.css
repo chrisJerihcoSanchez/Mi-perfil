@@ -1,72 +1,207 @@
-/* Estilo general para la página */
-body {
-    font-family: Arial, sans-serif;
-    background-color: #f0f0f0;
+/* Estilo general */
+* {
     margin: 0;
     padding: 0;
-    color: #333;
+    box-sizing: border-box;
 }
 
-/* Contenedor general */
+body {
+    font-family: 'Poppins', sans-serif;
+    background: linear-gradient(135deg, #1e3a8a, #60a5fa);
+    color: #333;
+    line-height: 1.6;
+    min-height: 100vh;
+}
+
 .container {
-    width: 80%;
+    max-width: 800px;
     margin: 0 auto;
+    padding: 0 20px;
     text-align: center;
 }
 
-/* Estilo para el header */
+/* Header */
 header {
-    background-color: #2c3e50;
+    padding: 60px 0;
     color: white;
-    padding: 50px 0;
+    background: linear-gradient(135deg, #2c3e50, #4b6cb7);
 }
 
-/* Estilo de la imagen de perfil (Avatar) */
-.avatar {
-    width: 150px;
-    height: 150px;
-    border-radius: 50%;
-    transition: opacity 0.3s ease-in-out;
-}
-
-/* Estilo para los títulos */
-h1 {
-    font-size: 2.5em;
-    cursor: pointer; /* Agregado para indicar que el título es interactivo */
-}
-
-/* Estilo para las secciones */
-section {
-    padding: 40px 0;
-}
-
-/* Estilo para los enlaces */
-a {
-    color: #3498db;
-    text-decoration: none;
-}
-
-a:hover {
-    text-decoration: underline;
-}
-
-.skills {
-    padding: 40px 0;
-}
-
-.skills .skill {
+.avatar-container {
+    position: relative;
     margin-bottom: 20px;
 }
 
-.progress-bar {
-    background-color: #f0f0f0;
+.avatar {
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    border: 4px solid white;
+    transition: transform 0.3s, opacity 0.3s;
+}
+
+.avatar:hover {
+    transform: scale(1.1);
+}
+
+.avatar-controls {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    gap: 80px;
+}
+
+.avatar-controls button {
+    background: rgba(0, 0, 0, 0.5);
+    color: white;
+    border: none;
+    padding: 5px 10px;
+    cursor: pointer;
+    border-radius: 50%;
+    transition: background 0.3s;
+}
+
+.avatar-controls button:hover {
+    background: rgba(0, 0, 0, 0.8);
+}
+
+h1 {
+    font-size: 2.8em;
+    margin-bottom: 10px;
+}
+
+.animate-text {
+    animation: slideIn 1s ease-in-out;
+}
+
+@keyframes slideIn {
+    from { opacity: 0; transform: translateY(-20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+p {
+    font-size: 1.1em;
+    color: #e5e7eb;
+}
+
+.projects-btn, .back-btn {
+    display: inline-block;
+    margin-top: 20px;
+    padding: 12px 24px;
+    background: #10b981;
+    color: white;
+    text-decoration: none;
     border-radius: 5px;
+    transition: transform 0.3s, background 0.3s;
+}
+
+.projects-btn:hover, .back-btn:hover {
+    background: #059669;
+    transform: translateY(-2px);
+}
+
+/* Secciones */
+section {
+    padding: 50px 0;
+    background: white;
+    margin: 20px 0;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+h2 {
+    font-size: 2em;
+    margin-bottom: 20px;
+    color: #1e3a8a;
+}
+
+/* Habilidades */
+.skills .skill {
+    margin-bottom: 25px;
+}
+
+.progress-bar {
+    background: #e5e7eb;
+    border-radius: 10px;
     height: 20px;
-    width: 100%;
+    overflow: hidden;
 }
 
 .progress {
-    background-color: #3498db;
+    background: #3b82f6;
     height: 100%;
-    border-radius: 5px;
+    border-radius: 10px;
+    transition: width 1s ease-in-out;
+}
+
+/* Contacto */
+.contact-links {
+    list-style: none;
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    flex-wrap: wrap;
+}
+
+.contact-links a {
+    color: #3b82f6;
+    font-size: 1.1em;
+    transition: color 0.3s;
+}
+
+.contact-links a:hover {
+    color: #1e3a8a;
+    text-decoration: underline;
+}
+
+/* Proyectos */
+.projects {
+    background: #f9fafb;
+}
+
+.project-card {
+    background: white;
+    padding: 20px;
+    margin: 15px 0;
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s;
+}
+
+.project-card:hover {
+    transform: translateY(-5px);
+}
+
+.project-link {
+    display: inline-block;
+    margin-top: 10px;
+    color: #10b981;
+    font-weight: 600;
+}
+
+.project-link:hover {
+    color: #059669;
+}
+
+/* Responsividad */
+@media (max-width: 600px) {
+    .container {
+        padding: 0 15px;
+    }
+    h1 {
+        font-size: 2em;
+    }
+    .avatar {
+        width: 100px;
+        height: 100px;
+    }
+}
+.avatar {
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    border: 4px solid white;
+    transition: transform 0.1s, opacity 0.1s ease-in-out;
 }
